@@ -1,0 +1,49 @@
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+{% block content %}
+<div class="main-sidebar">
+    <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="#">Admin E-Brary</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+            <a href="#">EB</a>
+        </div>
+
+            <ul class="sidebar-menu">
+                <li class="menu-header"><strong>Dashboard</strong></li>
+                <li class="nav-item dropdown {% if request.resolver_match.url_name == 'admins' %}active{% endif %}">
+                    <a href="{% url 'admins' %}" class="nav-link"><i
+                            class="fas fa-fire"></i><span>Dashboard</span></a>
+                </li>
+            
+                <li class="menu-header"><strong>Data Buku</strong></li>
+                <li  class="nav-item dropdown {% if request.resolver_match.url_name == 'data_buku' %} active {% elif request.resolver_match.url_name == 'edit_buku' %}active{% elif request.resolver_match.url_name == 'detail_buku' %}active{% endif %}">
+                    <a href="{% url 'data_buku' %}" class="nav-link"><i class="fas fa-book"></i> <span>Data Buku
+                        </span></a>
+                </li>
+                <li class="nav-item dropdown {% if request.resolver_match.url_name == 'tambah_buku' %}active{% endif %}">
+                    <a href="{% url 'tambah_buku' %}" class="nav-link"><i class="fas fa-plus-circle"></i><span>Tambah
+                            Buku</span></a>
+                </li>
+                <li class="nav-item dropdown {% if request.resolver_match.url_name == 'kategori' %}active{% endif %}">
+                    <a href="{% url 'kategori' %}" class="nav-link" disabled><i
+                            class="fas fa-list-ul"></i><span>Kategori</span></a>
+                </li>
+            </ul>
+
+        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-rocket"></i> Documentation
+            </a>
+        </div>
+    </aside>
+</div>
+<script>
+    $("#menuss").on('click', 'li', function () {
+    $("#menuss li.active").removeClass("active");
+    // adding classname 'active' to current click li 
+    $(this).addClass("active");
+});
+</script>
+{% endblock content %}

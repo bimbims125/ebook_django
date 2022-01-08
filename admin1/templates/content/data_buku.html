@@ -1,0 +1,86 @@
+{% extends "base-admin.html" %}
+{% block content %}
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Data Buku</h1>
+        </div>
+        <div class="section-body">
+
+            {% for msg in messages %}
+            <div id="mainAlertMessage" class="alert alert-success">{{msg}}</div>
+            {% endfor %}
+
+
+
+            <form class="form-inline mr-auto" method='POST' action="{% url 'search' %}">
+                {% csrf_token %}
+                <ul class="navbar-nav mr-3">
+
+                    <!-- <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li> -->
+                </ul>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="search-element">
+                            <!-- <button class="btn" type="submit"><i class="fas fa-search" style="margin-left: 200px;"></i></button> -->
+                            <strong> Cari Buku : </strong>
+                            {{search_form.name_of_book}}
+                            <hr>
+                            <!-- <div class="search-backdrop"></div> -->
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <div class="col-lg-12 col-lg-9">
+                <div class="col-lg-12">
+                    <h4>Filter berdasarkan genre :</h4>
+                    {% for kt in kategori %}
+                    <a href="{% url 'genre_buku' kt.slug %}" type="button" class="btn btn-primary" style="margin-top: 5px;">
+                        {{kt.name}}
+                        <span class="badge badge-transparent"></span>
+                    </a>
+                    {% endfor %}
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    {% for bk in buku %}
+                    <div class="col-6 col-lg-4 col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <center>
+                                            <h5>{{bk.title}}</h5>
+                                            <p>By: {{bk.author}}</p>
+                                            <hr>
+                                            <img src="{{bk.cover_image.url}}" alt="" width="50%">
+                                            <hr>
+                                        </center>
+                                        <a href="{% url 'detail_buku' bk.slug %}"
+                                            class="btn btn-outline-primary btn-block ">Detail Buku</a>
+                                        <a href="{% url 'edit_buku' bk.slug %}"
+                                            class="btn btn-outline-success btn-block ">Edit Buku </a>
+                                        <a href="{% url 'hapus_buku' bk.slug %}"
+                                            class="btn btn-outline-danger btn-block ">Hapus Buku </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    window.onload = function () {
+        var duration = 3000; // seconds
+        setTimeout(function () {
+            $('#mainAlertMessage').hide();
+        }, duration);
+    }
+</script>
+{% endblock content %}

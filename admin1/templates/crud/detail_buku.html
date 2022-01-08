@@ -1,0 +1,40 @@
+{% extends "base-admin.html" %}
+{% block content %}
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Detail Buku {{buku.title}}</h1>
+        </div>
+        <div class="section-body">
+            
+            <a href="{{request.META.HTTP_REFERER|escape}}" class="btn btn-outline-danger">Kembali</a>
+            <hr>            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card card-primary">
+                        <div class="card-body">
+                            <h4>Cover :</h4>
+                            <hr>
+                            <center>
+                                <img src="{{buku.cover_image.url}}" width="60%" alt="">
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-body">
+                            <h4>Pengarang : {{buku.author}}</h4>
+                            <hr>
+                            <h4>Ringkasan Buku :</h4>
+                            <p class="text-justify"><strong>{{buku.summary}}</strong></p>
+                            <hr>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock content %}

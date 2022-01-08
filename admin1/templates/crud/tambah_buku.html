@@ -1,0 +1,73 @@
+{% extends "base-admin.html" %}
+{% block content %}
+<div class="main-content">
+    <section class="section">
+        <div class="section-header">
+            <h1>Tambah Buku</h1>
+        </div>
+        
+        <div class="section-body">
+            
+            
+            <form action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <h5>Judul Buku :</h5>
+                                <hr>
+                                {{form.title}}                                                                
+                                <hr>
+                                <h5>Cover Buku :</h5>
+                                <hr>
+                                {{form.cover_image}}
+                                <hr>
+                                <h5>Pengarang :</h5>
+                                <hr>
+                                {{form.author}}
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                          
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <h5>Kategori :</h5>
+                                <hr>
+                                {{form.category}}
+                            </div>
+                        </div>                                                     
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <h5>Ringkasan Buku :</h5>
+                                <hr>
+                                {{form.summary}}
+                            </div>
+                        </div>                        
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <h5>File PDF Buku :</h5>
+                                <hr>
+                                {{form.pdf}}
+                            </div>
+                        </div>            
+                        <div class="card card-primary">
+                            <div class="card-body">
+                                <!-- <a href="{% url 'admins' %}" class="btn btn-outline-danger btn-block">Kembali</a> -->
+                                <input type="submit" value="Simpan" class="btn btn-outline-success btn-block">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                <!-- {{form.as_p}}
+                <input type="submit" value="Simpan" class="btn btn-outline-success btn-block"> -->
+
+            </form>
+        </div>
+    </section>
+</div>
+{% endblock content %}

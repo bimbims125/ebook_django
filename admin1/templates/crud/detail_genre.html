@@ -1,0 +1,46 @@
+{% extends "base-admin.html" %}
+{% block content %}
+  <div class="main-content">
+      <section class="section">
+          <div class="section-header">
+            <h1>Buku dengan genre {{genre_detail.name}}</h1>
+          </div>
+          <div class="section-body">
+              <div class="col-lg-12 col-lg-9">
+                  <a href="{{request.META.HTTP_REFERER|escape}}" class="btn btn-outline-danger">Kembali</a>
+                  <hr>
+                  
+                  {% if genre_detail.books.all %}                                 
+                  <div class="row">
+                    {% for genre in genre_detail.books.all %}
+                    <div class="col-6 col-lg-4 col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-body px-4 py-4-5">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <center>
+                                            <h5>{{genre.title}}</h5>
+                                            <p>By : {{genre.author}}</p>
+                                            <hr>
+                                            <img src="{{genre.cover_image.url}}" alt="" width="50%">  
+                                            <hr>                                                                                                                             
+                                        </center>
+                                        <a href="{% url 'detail_buku' genre.slug %}"
+                                            class="btn btn-outline-primary btn-block ">Detail Buku</a>
+                                        <a href="{% url 'edit_buku' genre.slug %}"
+                                            class="btn btn-outline-success btn-block ">Edit Buku </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h3 class="text-center">Tidak ada data buku dengan genre {{genre_detail.name}}</h3>
+                    {% endif %}
+                </div>
+            </div>
+          </div>
+      </section>
+  </div>
+{% endblock content %}
